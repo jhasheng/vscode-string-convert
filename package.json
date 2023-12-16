@@ -1,0 +1,102 @@
+{
+  "name": "string-convert",
+  "displayName": "string-convert",
+  "description": "string convert",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "url": "https://github.com/jhasheng/vscode-string-convert.git"
+  },
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "字符串互转",
+      "properties": {
+        "sc.pattern": {
+          "type": "string",
+          "default": "\"value\": \"([0-9a-fA-F]+)\"",
+          "description": "自动匹配时的默认正则表达式"
+        },
+        "sc.length:min": {
+          "type": "number",
+          "default": 2,
+          "description": "自动匹配时默认提取内容最小长度，小于此长度会被丢弃"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "sc.hextoascii",
+        "title": "16 进制字符转ASCII"
+      },
+      {
+        "command": "sc.automatch.with.regex",
+        "title": "使用 ... 匹配 16 进制字符"
+      },
+      {
+        "command": "sc.automatch",
+        "title": "匹配 16 进制字符"
+      },
+      {
+        "command": "sc.automatch.with.selection",
+        "title": "匹配选定内容中 16 进制字符"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "sc.automatch",
+          "group": "bookmarks",
+          "when": "editorFocus && !editorHasSelection"
+        },
+        {
+          "command": "sc.automatch.with.selection",
+          "group": "bookmarks",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "sc.automatch.with.regex",
+          "group": "bookmarks",
+          "when": "editorFocus && !editorHasSelection"
+        },
+        {
+          "command": "sc.hextoascii",
+          "group": "bookmarks",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.54.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
