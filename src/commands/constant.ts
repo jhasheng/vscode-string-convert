@@ -1,7 +1,7 @@
-import { ExtensionContext, TextEditor, commands, workspace } from "vscode";
+import { ExtensionContext, TextEditor, commands, window, workspace } from "vscode";
 
 export interface ICommandConstructor {
-  new (context: ExtensionContext, editor: TextEditor): ICommand;
+  new (context: ExtensionContext): ICommand;
 }
 
 export interface ICommand {
@@ -19,13 +19,14 @@ export interface ICommand {
 export abstract class Command implements ICommand {
   readonly name?: string;
 
-  editor: TextEditor;
-
   context: ExtensionContext;
 
-  constructor(context: ExtensionContext, editor: TextEditor) {
-    this.editor = editor;
+  constructor(context: ExtensionContext) {
     this.context = context;
+  }
+
+  get editor() {
+    return window.activeTextEditor!;
   }
 
   register() {

@@ -22,7 +22,3 @@ This extension contributes the following settings:
 
 - `sc.pattern`: 自动匹配时的默认正则表达式
 - `sc.length:min`: 自动匹配时默认提取内容最小长度，小于此长度会被丢弃
-
-### 0.0.1
-
-- 首次提交
