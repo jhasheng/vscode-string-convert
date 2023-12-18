@@ -2,7 +2,7 @@
   "name": "string-convert",
   "displayName": "string-convert",
   "description": "string convert",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.54.0"
   },
@@ -47,6 +47,10 @@
       {
         "command": "sc.automatch.with.selection",
         "title": "匹配选定内容中 16 进制字符"
+      },
+      {
+        "command": "sc.decode.uri.component",
+        "title": "HTML Entity 转 ASCII"
       }
     ],
     "menus": {
@@ -68,6 +72,11 @@
         },
         {
           "command": "sc.hextoascii",
+          "group": "bookmarks",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "sc.decode.uri.component",
           "group": "bookmarks",
           "when": "editorHasSelection"
         }

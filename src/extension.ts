@@ -5,6 +5,7 @@ import {
   AutoMatchCommand,
   AutoMatchWithRegexCommand,
   AutoMatchWithSelectionCommand,
+  DecodeURIComponentCommand,
   HexToASCIICommand,
 } from "./commands";
 import { ICommandConstructor } from "./commands/constant";
@@ -26,6 +27,7 @@ export function activate(context: ExtensionContext) {
   handlers.append(AutoMatchCommand);
   handlers.append(AutoMatchWithRegexCommand);
   handlers.append(AutoMatchWithSelectionCommand);
+  handlers.append(DecodeURIComponentCommand);
 }
 
 // This method is called when your extension is deactivated
